@@ -1,0 +1,28 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "21.1.1"
+
+    defaultConfig {
+        applicationId "com.acktos.conductorvip"
+        minSdkVersion 16
+        targetSdkVersion 19
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.google.android.gms:play-services:7.0.0'
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
+    compile files('libs/apache-mime4j-0.6.jar')
+    compile files('libs/httpmime-4.0.1.jar')
+}

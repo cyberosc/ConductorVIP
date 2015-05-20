@@ -1,0 +1,17 @@
+<resources>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="pourple_service">#800080</color>
+    <color name="orange_service">#FFA500</color>
+    <color name="dark_green_service">#006400</color>
+    <color name="red_service">#DC143C</color>
+    <color name="green_primary">#8bc34a</color>
+    <color name="dark_green_primary">#689f38</color>
+    <color name="red_primary">#f44336</color>
+    <color name="dark_red_primary">#d32f2f</color>
+    <color name="gray_background">#ffe8e8e8</color>
+    <color name="blue_primary">#ff2196f3</color>
+    <color name="gray_primary">#ff212121</color>
+
+
+</resources>

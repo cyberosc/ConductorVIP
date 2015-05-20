@@ -1,0 +1,179 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    tools:context="com.acktos.conductorvip.ResultServiceActivity" >
+
+    <LinearLayout
+        android:id="@+id/cont_msg_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/img_result"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/successflat" />
+
+        <TextView
+            android:id="@+id/txt_result_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/msg_good_gob"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cont_km"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cont_msg_service"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:weightSum="6" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:src="@drawable/ic_km" />
+
+        <TextView
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/lbl_distance" />
+
+        <TextView
+            android:id="@+id/txt_total_km"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:text="@string/lbl_default_distance"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cont_min"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         android:layout_below="@id/cont_km"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:weightSum="6" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:src="@drawable/ic_min" />
+
+        <TextView
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/lbl_time" />
+
+        <TextView
+            android:id="@+id/txt_total_time"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:text="@string/lbl_default_time"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cont_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         android:layout_below="@id/cont_min"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:weightSum="6" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:src="@drawable/ic_speed" />
+
+        <TextView
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="@string/lbl_speed" />
+
+        <TextView
+            android:id="@+id/txt_total_speed"
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="right"
+            android:text="@string/lbl_default_speed"
+            android:textStyle="bold" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/cont_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         android:layout_below="@id/cont_time"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingBottom="5dp" >
+		
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@android:color/darker_gray"
+            android:paddingTop="15px"
+            android:paddingBottom="15px"/>
+       
+        <TextView
+            style="@android:style/TextAppearance.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+           	android:textSize="25sp"
+            android:text="@string/lbl_total" />
+
+        <TextView
+            android:id="@+id/txt_total"
+            style="@android:style/TextAppearance.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+           	android:textSize="35sp"
+            android:text="@string/lbl_default_total"
+            android:textStyle="bold" />
+        
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_back_services"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:onClick="backToServices"
+        android:text="@string/lbl_back_services" />
+
+</RelativeLayout><!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_result_service.xml -->

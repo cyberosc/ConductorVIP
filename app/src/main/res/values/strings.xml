@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RP Conductores</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="lbl_btn_start_track">Iniciar Recorrido</string>
+    <string name="lbl_btn_end_track">Finalizar Recorrido</string>
+    <string name="lbl_default_total">0 $</string>
+    <string name="lbl_default_distance">0 Km</string>
+    <string name="lbl_default_speed">0.0 Km/h</string>
+    <string name="lbl_default_time">0 Min</string>
+    <string name="lbl_time">TIEMPO</string>
+    <string name="lbl_total">TOTAL</string>
+    <string name="lbl_speed">VELOCIDAD</string>
+    <string name="lbl_distance">DISTANCIA</string>
+    <string name="lbl_pending_services">Mis servicios</string>
+    <string name="lbl_completed_service">Servicios completados</string>
+    <string name="lbl_logout">Cerrar sesión</string>
+    <string name="lbl_take_service">Tomar Servicio</string>
+    <string name="lbl_start_service">Iniciar Servicio</string>
+    <string name="lbl_send_bill">ENVIAR A FACTURACIÓN</string>
+    <string name="lbl_pickup_address">Dir Cliente:</string>
+    <string name="lbl_address">DIRECCIÓN</string>
+    <string name="lbl_state">ESTADO</string>
+    <string name="lbl_hour">HORA</string>
+    <string name="lbl_reference">REFERENCIA</string>
+    <string name="lbl_customer">CLIENTE</string>
+    <string name="lbl_service_type">TIPO SERVICIO</string>
+    <string name="lbl_pickup_date">FECHA RECOGIDA</string>
+    <string name="lbl_pickup_hour">HORA RECOGIDA</string>
+    <string name="lbl_back_services">Volver a servicios</string>
+    <string name="address_output_string">%1$s %2$s</string>
+    <string name="driver_here_progress">Enviando notificacion&#8230;</string>
+    <string name="driver_here">Estoy aquí</string>
+    <string name="call">Llamar</string>
+    <string name="service">Referencia</string>
+    <string name="now">Ahora</string>
+    <string name="customer">Cliente</string>
+
+
+    <string-array name="bill_titles">
+        <item>Distancia</item>
+        <item>Tiempo</item>
+        <item>Velocidad promedio</item>
+        <item>Valor por minuto</item>
+        <item>Valor por kilometro</item>
+        <item>Tarifa Base</item>
+        <item>Incremento</item>
+        <item>Total</item>
+    </string-array>
+    <string-array name="measurement_units">
+        <item>Km</item>
+        <item>Min</item>
+        <item>Km/H</item>
+        <item>COP</item>
+        <item>COP</item>
+        <item>COP</item>
+        <item>X</item>
+        <item>COP</item>
+    </string-array>
+
+    <!-- STATUS LABELS -->
+    <string name="status_connecting_google">Conectando con google&#8230;</string>
+    <string name="status_success_connection">Conexión exitosa.</string>
+    <string name="status_getting_gps_signal">Obteniendo señal GPS&#8230;</string>
+    <string name="status_good_gps_signal">Señal GPS estable</string>
+     <string name="status_bad_gps_signal">Mala señal GPS </string>
+    <string name="status_excelent_gps_signal">Señal GPS excelente</string>
+    <string name="status_end_track">Recorrido Finalizado</string>
+    <string name="status_waiting_connection">Esperando conexión</string>
+
+    <!-- NOTIFICATIONS -->
+    <string name="notif_title_track">Tracking en proceso</string>
+    <string name="notif_track_on">El rastreo de ruta continua ejecutandose</string>
+    <string name="notif_take_service_failed">Este Servicio ya fue tomado por otro móvil.</string>
+    <string name="notif_take_service_success">Servicio Asignado OK.</string>
+    <string name="msg_login_no_response">Tu solicitud de login no pudo ser procesada en este momento.</string>
+    <string name="msg_success_result_service">!Buen trabajo¡ Gracias por completar tu servicio.</string>
+    <string name="msg_failed_result_service">No se pudierón enviar los datos de este servicio a la central, intentalo luego.</string>
+    <string name="msg_want_finish_service">¿En realidad deseas dar por terminado el servicio?</string>
+    <string name="notif_msg_new_service">Hay %1$s nuevos servicios</string>
+    <string name="notif_send_bill_failed">Tu factura no pudo ser enviada, intentalo luego</string>
+    <string name="notif_send_bill_success">OK. Tu factura ha sido enviada con éxito.</string>
+    <string name="notif_leave_track_map">No abandones el mapa antes de terminar tu servicio.</string>
+    <string name="notif_adress_not_found">Dirección no encontrada.</string>
+    <string name="msg_requests_not_found">No hay Nuevos servicios.</string>
+    <string name="msg_my_services_not_found">No tiene servicios pendientes.</string>
+    <string name="msg_connection_error">Error durante la conexión.</string>
+    <string name="msg_logout_success">Se cerro sesión correctamente.</string>
+    <string name="msg_logout_failed">No se logro cerrar su sesión.</string>
+    <string name="notif_driver_arrived_failed">No pudimos notificar tu llegada al cliente, revisa tu conexión a internet.</string>
+    <string name="msg_good_gob">!Buen trabajo! Gracias por completar tu servicio</string>
+    <string name="msg_waiting_for_estable_gps">Esperando señal estable del GPS, procure estar en un espacio abierto.&#8230;</string>
+    <string name="msg_service_dialog">¿Deseas llamar a %1$s o notificarle que ya estas aquí? </string>
+    <string name="msg_send_bill_dialog">Este servicio NO ha sido enviado a la central de datos, por un problema en la conexión y permanece guardado en tu dispositivo ¿Deseas enviarlo ahora?</string>
+
+    <!-- URL´S -->
+    <string name="url_add_bill">http://www.rutaplus.co/add_factura/</string>
+    <string name="url_get_service_requests">http://www.rutaplus.co/find_conductorserviciovip/</string>
+    <!-- <string name="url_get_service_requests"> http://www.cupones.acktos.com/find_conductorserviciovip/</string> -->
+    <!-- <string name="url_get_service_requests">http://www.presto.domiciliosonline.com.co/encuestas/getAvailableServices</string> -->
+    <string name="url_take_service">http://www.rutaplus.co/asignar_servicio/</string>
+    <string name="url_car_login">http://www.rutaplus.co/loginconductor/</string>
+    <string name="url_get_my_services">http://www.rutaplus.co/find_conductorserviciovip/</string>
+    <string name="url_get_bill_detail">http://www.rutaplus.co/find_factura/</string>
+    <string name="url_set_register_id">http://www.rutaplus.co/edit_mobileid/</string>
+
+    <!-- TITULOS -->
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_list_service_request">Servicios Disponibles</string>
+    <string name="title_activity_login">RP Conductores</string>
+    <string name="title_activity_detail_request">Detalle del servicio No:</string>
+    <string name="title_activity_bill_detail">Factura Servicio No:</string>
+    <string name="title_tracking">Ruta Servicio No:</string>
+    <string name="title_activity_service_detail">Servicio disponible</string>
+
+
+    <!-- LOGIN -->
+    <string name="prompt_email">Usuario</string>
+    <string name="prompt_password">password</string>
+    <string name="action_sign_in_register"><b>Entrar</b></string>
+    <string name="action_sign_in_short">Entrar</string>
+    <string name="action_forgot_password">Recuperar Contraseña</string>
+    <string name="login_progress_signing_in">Autenticando&#8230;</string>
+    <string name="error_invalid_email">El usuario es invalido</string>
+    <string name="error_invalid_password">La contraseña es demasiado corta</string>
+    <string name="error_incorrect_password">Usuario o contraseña es incorrecta</string>
+    <string name="error_field_required">Este campo es requerido</string>
+    <string name="title_activity_result_service">Servicio finalizado</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_pending_services">Planilla</string>
+    <string name="title_activity_detail_bill">Detalle de facturación</string>
+    <string name="title_activity_service_vipconfirm">Confirmar servicio</string>
+
+</resources>

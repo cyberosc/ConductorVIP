@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="3033cc3a2c68dff3e5b646d6d084bdbdf7d00b25">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-437743e341a8463c47133194f58b658056b1d049.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="0e8228b4bc69c6a2c8d7c18498a77e53417d2574">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-88f57bf13b34e2b48616661af9dae0bceecde6d4.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="7ff613bf78ab057293892fdbd4169eda899c89b9">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-52d7456a053a7ec702c4ea727d8f4aff6bbcf0d7.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-0f5d0df51a0a4db15ca815c0e933f9f4097c7c1e.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="a96b762bde4139de855735f175ec4d17dca55a6d">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-465495889fb19c8307c526260cc16697175e7ab2.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="c976518693e89ad44fbfccfc654941eaec198d08">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-da4afbbf0e939de545638020eba208e5c6e32ebb.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\libs\httpmime-4.0.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="326bf4147f100e8a4fdd7f1867a87e969fb10812">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\httpmime-4.0.1-4914fb9d25813c0f506b4131fec6b8914b398bb6.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="a08d65794b844d8e7540bf9a33859bf3b2482d7f">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-d36b464e21d6eb494e675d765905e31af0a6a1ac.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="1c5a76debf0c2857ccad422c4a80ed785982f8df">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-9b3966c4fff30d21ef0231bd6e7568688d9c287b.jar" />
+    </item>
+    <item
+        jar="C:\Users\OSCAR ACKTOS\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\library-2.4.0-dd05cc29ff232583d8aa9d4b36006bd9031f09ca.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="3c0b099f9de16b265ecd6122fcb603e7d0d29f90">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-33d8089cab9b0bb27209fec054b0413508b7a922.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\libs\apache-mime4j-0.6.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="945007627e8d12275d755081a9e609c018e1210d">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\apache-mime4j-0.6-5276f61e7072a4d9cb5d41a2e7f57aefb58e1f0a.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="17f8750d5c0749e44dd7c54aa390d9c937803825">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-195beea1319456ccf7ed83f5ac48501f4d54f414.jar" />
+    </item>
+    <item
+        jar="D:\adt-bundle-windows-x86-20140702\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-97d3f75fcda8a53471dd9d9c10f5963d052c0249.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="fb04b12526b0073c7fb1ebb70c5842d82ee95596">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-bdd315833ce853491abd72e20134ea2fba1f4029.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4c93d99d454c975536bbe3b42283eee847f03ea3">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-0434726f902a319938f1989042a379f5ea4eadae.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="ef5f051e7308febe289dc93c67c5f32785b4260a">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-253c6ce87b9d4c17bd8d931a821c25a9f6ed253d.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4cd0b093824b3228fffc21ea369b98d0b1db6566">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-7e27c6d8ddb707be695a786f604faf280ca93a0c.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="e3d791b42eaa90416cd0b2d2e608092794a3baa4">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-f2ce70d7cdbd39b259e1c90478480e5b312c1fa7.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="41b3870cbe5fa546d8095b5b89d42cb69f3dd175">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-efc5d16cd0a26562dd653fb2073288424c52a490.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.github.navasmdc\MaterialDesign\1.4\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="87405405e403de68f4057757b8a2e8de02bd65d0">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-4834fc161b48b622d639d44873386ed2e87ffcee.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="73ccb92b70112f2e463e415ef8d7275de7da6516">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-66d720257a4d52d66d30080f9f675f64bb7e7ab8.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="9224bc4c54ba95147c7eabd874573763c07cb6be">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-fd0623832923ef0525dd792b01a47a8b87675c0f.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-3f113ea5b7fc0217f7750018017286ec0b239768.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="055783146ba9654a725442563be78cad303aad1f">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-847083af3004e4c3d751b82177e2e2b0fee70a17.jar" />
+    </item>
+    <item
+        jar="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="29fd6d3794b71491c2789708cd8d03c71feb8954">
+        <dex dex="D:\AndroidStudioProjects\ConductorVIP\app\build\intermediates\pre-dexed\debug\classes-3ff67e9a525835aea789af408e7c10a73f17c190.jar" />
+    </item>
+
+</items>

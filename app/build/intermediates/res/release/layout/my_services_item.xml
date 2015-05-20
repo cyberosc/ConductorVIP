@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/custom_border_all">
+
+    <!-- ADDRESS ITEM-->
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ic_address"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_place" />
+
+        <TextView
+            android:id="@+id/txt_title_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ic_address"
+            android:textAllCaps="true"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lbl_address" />
+
+        <TextView
+
+            android:id="@+id/txt_my_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/txt_title_address"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+
+            />
+
+    </RelativeLayout>
+
+    <!-- CUSTOMER ITEM-->
+    <RelativeLayout
+
+        android:id="@+id/relative_content_address"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ic_customer"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_customer" />
+
+        <TextView
+            android:id="@+id/txt_title_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ic_customer"
+            android:textAllCaps="true"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lbl_customer" />
+
+        <TextView
+
+            android:id="@+id/txt_my_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/txt_title_customer"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+
+            />
+
+    </RelativeLayout>
+
+    <!-- STATE-->
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ic_state"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_state" />
+
+        <TextView
+            android:id="@+id/txt_title_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ic_state"
+            android:textAllCaps="true"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lbl_state" />
+
+        <TextView
+
+            android:id="@+id/txt_my_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/txt_title_state"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+
+            />
+
+    </RelativeLayout>
+
+    <!-- DATE-->
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ic_date"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_date" />
+
+        <TextView
+            android:id="@+id/txt_title_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ic_date"
+            android:textAllCaps="true"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lbl_hour" />
+
+        <TextView
+
+            android:id="@+id/txt_my_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/txt_title_date"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+
+            />
+
+    </RelativeLayout>
+
+    <!-- SERVICE ID-->
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ic_reference"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_reference"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/txt_title_reference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ic_reference"
+            android:textAllCaps="true"
+            android:textSize="11dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/lbl_reference" />
+
+        <TextView
+
+            android:id="@+id/txt_my_service_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/txt_title_reference"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/black"
+            android:textSize="12sp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+
+            />
+
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp">
+
+        <View android:id="@+id/my_color_service"
+            android:layout_width="6dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:background="@android:color/holo_orange_dark"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/txt_my_service_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.Large"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+
+         <TextView
+            android:id="@+id/txt_my_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.Medium"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
+
+        <TextView
+            android:id="@+id/txt_my_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.Large"
+            android:layout_marginLeft="6dp"
+            android:layout_toStartOf="@id/txt_my_service_id"
+            android:layout_toRightOf="@id/my_color_service"/>
+
+        <TextView
+            android:id="@+id/txt_my_customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.Small"
+            android:layout_below="@id/txt_my_address"
+            android:layout_toStartOf="@id/txt_my_state"
+            android:layout_toRightOf="@id/my_color_service"
+            android:layout_marginLeft="8dp"/>
+
+
+    </RelativeLayout>--><!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/my_services_item.xml -->

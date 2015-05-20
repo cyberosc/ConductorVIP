@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/logout" android:title="@string/lbl_logout"></item> 
+    
+</menu>
+
+<!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/menu/menu_navigation.xml -->

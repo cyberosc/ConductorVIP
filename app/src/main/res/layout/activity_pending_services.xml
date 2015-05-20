@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    tools:context=".PendingServiceActivity" >
+
+    <ListView
+        android:id="@+id/list_pending_services"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:dividerHeight="8dp"
+        android:divider="@null"
+
+        >
+    </ListView>
+    
+     <TextView 
+        android:id="@+id/pending_status_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@android:color/darker_gray"
+        style="@android:style/TextAppearance.Medium"
+        android:text="@string/msg_my_services_not_found"
+        android:gravity="center_horizontal"
+        android:visibility="gone"/>
+    
+</RelativeLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shape="oval">
+
+    <padding android:left="20dp" android:right="20dp" android:top="20dp" android:bottom="20dp"/>
+    <solid android:color="@color/common_signin_btn_dark_text_disabled"/>
+    <stroke android:width="3dp" android:color="#BBBBBB" />
+
+</shape><!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/drawable-hdpi/circle_button_disable.xml -->
