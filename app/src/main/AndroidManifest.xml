@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.acktos.conductorvip"
-    android:versionCode="17"
-    android:versionName="2.0.1" >
+    android:versionCode="20"
+    android:versionName="3.0.2" >
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="22" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,12 +18,15 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="com.acktos.conductorvip.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.SEND" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="18" />
 
     <!-- Maps API needs OpenGL ES 2.0. -->
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
+
+
 
     <application
         android:allowBackup="true"
@@ -36,10 +39,9 @@
 
         <!-- DEBUG API KEY -->
         <!--
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAZfHdKhmvQi5s2yPST2WPXndpbUZuZ92k" />-->
-       
+                <meta-data
+                    android:name="com.google.android.maps.v2.API_KEY"
+                    android:value="AIzaSyAZfHdKhmvQi5s2yPST2WPXndpbUZuZ92k" />-->
 
         <!-- PRODUCTION API KEY -->
 
@@ -47,14 +49,14 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyC-WgGf4iAxrQjPmYjCO67SwUeFrvXc1Vg" />
 
+
         <activity
-            android:name="com.acktos.conductorvip.MapServiceActivity"
+            android:name=".MapServiceActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
-
         <activity
-            android:name="com.acktos.conductorvip.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
             <intent-filter>
@@ -64,39 +66,63 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.acktos.conductorvip.ResultServiceActivity"
+            android:name=".ResultServiceActivity"
             android:label="@string/title_activity_result_service"
             android:noHistory="true" >
         </activity>
         <activity
-            android:name="com.acktos.conductorvip.PendingServicesActivity"
+            android:name=".PendingServicesActivity"
             android:label="@string/title_activity_pending_services" >
+
         </activity>
         <activity
-            android:name="com.acktos.conductorvip.BillDetailActivity"
+            android:name=".BillDetailActivity"
             android:label="@string/title_activity_bill_detail" >
         </activity>
         <activity
-            android:name="com.acktos.conductorvip.ServiceDetailActivity"
-            android:label="@string/title_activity_service_detail" >
+            android:name=".ServiceDetailActivity"
+            android:label="@string/title_activity_service_detail"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme" >
+
         </activity>
 
-        <service android:name="com.acktos.conductorvip.services.ServiceTest" />
-        <service android:name="com.acktos.conductorvip.services.TrackService" />
-        <service android:name="com.acktos.conductorvip.services.ChosenDriverService" android:exported="false" ></service>
-        <service android:name="com.acktos.conductorvip.services.AcceptIntentService" android:exported="false" ></service>
-        <service android:name="com.acktos.conductorvip.services.AssignDriverService" android:exported="false" ></service>
-        <service android:name="com.acktos.conductorvip.services.GcmIntentService" />
+        <service android:name=".services.TrackService" />
+        <service
+            android:name=".services.ChosenDriverService"
+            android:exported="false" />
+        <service
+            android:name=".services.AcceptIntentService"
+            android:exported="false" />
+        <service
+            android:name=".services.AssignDriverService"
+            android:exported="false" />
+        <service android:name=".services.GcmIntentService" />
 
+        <service
+            android:name=".services.SendPositionService"
+            android:exported="false" >
+        </service>
 
         <receiver
-            android:name="com.acktos.conductorvip.broadcast.GcmBroadcastReceiver"
+            android:name=".broadcast.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
                 <category android:name="com.acktos.conductorvip" />
             </intent-filter>
+        </receiver>
+
+        <receiver
+            android:name="com.acktos.conductorvip.broadcast.BootCompletedReceiver"
+            android:enabled="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.acktos.conductorvip.broadcast.AlarmReceiver" >
         </receiver>
 
 

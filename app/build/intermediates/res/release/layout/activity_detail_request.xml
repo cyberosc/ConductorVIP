@@ -166,4 +166,4 @@
         android:text="@string/lbl_send_bill"
         android:visibility="gone" />
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_detail_request.xml -->
+</RelativeLayout><!-- From: file:/Users/Acktos/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_detail_request.xml -->

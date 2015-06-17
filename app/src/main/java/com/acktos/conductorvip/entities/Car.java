@@ -23,9 +23,10 @@ public class Car {
 	public static final String KEY_PLATE="placa";
 	public static final String KEY_PSWRD="pswrd";
 	public static final String KEY_MOBILE_ID="mobile_id";
+	public static final String KEY_COORDINATES="coordenadas";
+	public static final String KEY_CURRENT_DATE="horacoordenada";
 	public static final String KEY_USER_AGENT="user_agent";
-	
-	
+
 	
 	public String toJson(){
 		return "{\"id\":\""+id+"\",\"email\":\""+email+"\",\"cc\":\""+cc+"\","+ 

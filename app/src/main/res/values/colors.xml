@@ -12,6 +12,14 @@
     <color name="gray_background">#ffe8e8e8</color>
     <color name="blue_primary">#ff2196f3</color>
     <color name="gray_primary">#ff212121</color>
+    <color name="green_rutaplus">#DDDC1B</color>
+    <color name="gray_dark_material">#ff2e363b</color>
+    <color name="gray_light_material">#E7E1DD</color>
+    <color name="gray_progress_background">#B2BEC3</color>
+    <color name="green_progress">#84CA9D</color>
+    <color name="red_cancel">#DE9977</color>
+    <color name="gray_secondary_material">#ff697479</color>
+
 
 
 </resources>

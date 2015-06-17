@@ -9,4 +9,4 @@
     <solid android:color="@color/common_signin_btn_dark_text_disabled"/>
     <stroke android:width="3dp" android:color="#BBBBBB" />
 
-</shape><!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/drawable-hdpi/circle_button_disable.xml -->
+</shape><!-- From: file:/Users/Acktos/AndroidStudioProjects/ConductorVIP/app/src/main/res/drawable-hdpi/circle_button_disable.xml -->

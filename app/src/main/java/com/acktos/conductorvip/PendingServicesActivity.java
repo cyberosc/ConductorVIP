@@ -5,15 +5,20 @@ import java.util.ArrayList;
 
 import com.acktos.conductorvip.adapters.MyServicesAdapter;
 import com.acktos.conductorvip.adapters.RequestsAdapter;
+import com.acktos.conductorvip.broadcast.AlarmReceiver;
 import com.acktos.conductorvip.controllers.BillController;
 import com.acktos.conductorvip.controllers.CarController;
 import com.acktos.conductorvip.controllers.ServiceController;
 import com.acktos.conductorvip.entities.Service;
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -48,12 +53,15 @@ public class PendingServicesActivity extends Activity {
 	private ArrayList<Service> pendingServices;
 	private MyServicesAdapter mAdapter;
 	private TextView pendingMessage;
+    private ButtonRectangle connectedButton;
 	
 	//Attempt get web service
 	private boolean attempt=false;
 	
 	//components
 	ServiceController serviceController;
+	CarController carController;
+	AlarmReceiver alarmReceiver;
 	Context context;
 	GoogleCloudMessaging gcm;
 
@@ -84,9 +92,12 @@ public class PendingServicesActivity extends Activity {
 
 		listPendingServices=(ListView) findViewById(R.id.list_pending_services);
 		pendingMessage=(TextView) findViewById(R.id.pending_status_message);
+        connectedButton=(ButtonRectangle) findViewById(R.id.btn_connect);
 		
 		//components initialized
 		serviceController=new ServiceController(this);
+		carController=new CarController(this);
+        alarmReceiver=new AlarmReceiver();
 
 		//set adapter to listView
 		pendingServices=new ArrayList<Service>();
@@ -133,6 +144,16 @@ public class PendingServicesActivity extends Activity {
 
 			}
 		});
+
+
+        // update color button state
+        updateConnectedUI();
+
+        // set alarm for periodical position updates if the driver is connected
+        if(carController.getConnectedState()){
+            alarmReceiver.setAlarm(this);
+        }
+
 	}
 
 	@Override
@@ -143,11 +164,12 @@ public class PendingServicesActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		
-		super.onResume();
+
+        super.onResume();
 		checkPlayServices();
 		GetMyServicesTask pendingTask=new GetMyServicesTask();
 		pendingTask.execute();
+
 	}
 
 	@Override
@@ -168,6 +190,8 @@ public class PendingServicesActivity extends Activity {
 				String messageLogout;
 				if(logout()){
 					messageLogout=getString(R.string.msg_logout_success);
+
+
 					Intent iLogout=new Intent(this,LoginActivity.class);
 					startActivity(iLogout);
 					finish();
@@ -183,14 +207,58 @@ public class PendingServicesActivity extends Activity {
 
 	private boolean logout(){
 
+        boolean connectedState=carController.getConnectedState();
 
-		if(deleteFile(LoginActivity.FILE_CAR_PROFILE)){
-			return true;
-		}else{
-			return false;
-		}
+        if(!connectedState){
+            if(deleteFile(LoginActivity.FILE_CAR_PROFILE)){
+
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            DialogFragment newFragment = new DisconnectDialog();
+            newFragment.show(getFragmentManager(), "disconnectDialog");
+            return false;
+        }
+
+
 
 	}
+
+    public void changeConnectedState(View view){
+
+        boolean connectedState=carController.getConnectedState();
+
+        // driver is connected, start disconnected process
+        if(connectedState){
+            (new DisconnectedTask()).execute();
+        }
+        // driver is disconnect, start periodical send-position alarm
+        else{
+            alarmReceiver.setAlarm(this);
+            carController.setConnectedState(true);
+            updateConnectedUI();
+        }
+
+    }
+
+    /**
+     * Change color and text of the connected button
+     */
+    private void updateConnectedUI(){
+
+        boolean connectedState;
+        connectedState=carController.getConnectedState();
+
+        if(connectedState){
+            connectedButton.setBackgroundColor(getResources().getColor(R.color.green_primary));
+            connectedButton.setText(getString(R.string.connected_state));
+        }else{
+            connectedButton.setBackgroundColor(getResources().getColor(R.color.red_primary));
+            connectedButton.setText(getString(R.string.disconnected_state));
+        }
+    }
 
 	/**
 	 * Check the device to make sure it has the Google Play Services APK. If
@@ -396,4 +464,56 @@ public class PendingServicesActivity extends Activity {
 		}
 		
 	}
+
+    /**
+     * send disconnected state to server in background
+     */
+
+    private class DisconnectedTask extends AsyncTask<Void,Void,Boolean>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            setProgressBarIndeterminateVisibility(true);
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+
+            boolean result=carController.disconnectedFromServer();
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            super.onPostExecute(result);
+
+            if(result){
+                carController.setConnectedState(false);
+                // update btn color
+                updateConnectedUI();
+
+                // cancel periodical send-position  alarm
+                alarmReceiver.cancelAlarm(PendingServicesActivity.this);
+
+            }else{
+                Toast.makeText(PendingServicesActivity.this,getString(R.string.msg_failed_disconnect),Toast.LENGTH_LONG).show();
+            }
+
+            setProgressBarIndeterminateVisibility(false);
+
+        }
+    }
+
+    public static class DisconnectDialog extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.msg_confirm_disconnect)
+                    .setPositiveButton(android.R.string.ok, null);
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
+    }
 }

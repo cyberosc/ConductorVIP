@@ -47,7 +47,8 @@ public class ChosenDriverService extends IntentService {
     boolean loaded = false;
     public static final int LIGHT_DURATION_ON=500;
     public static final int LIGHT_DURATION_OFF=400;
-    public static final int NOTICATION_NEW_SERVICE_ID=45    ;
+    public static final int NOTICATION_NEW_SERVICE_ID=45;
+    private final static int MAX_VOLUME = 100;
 
     public ChosenDriverService() {
         super("ChosenDriverService");
@@ -111,7 +112,18 @@ public class ChosenDriverService extends IntentService {
 
                 Log.i(TAG, "send Notification");
 
-                sendNotification(serviceId,distance,address);
+                //sendNotification(serviceId, distance, address);
+
+                //playSound();
+
+                Intent i=new Intent(this,ServiceDetailActivity.class);
+                i.putExtra(GcmIntentService.KEY_ADDRESS,address);
+                i.putExtra(GcmIntentService.KEY_DISTANCE, distance);
+                i.putExtra(GcmIntentService.KEY_SERVICE_ID, serviceId);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(i);
+
             }
         }
 
@@ -150,7 +162,7 @@ public class ChosenDriverService extends IntentService {
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTICATION_NEW_SERVICE_ID, mBuilder.build());
         Log.i(TAG, "sound play");
-        playSound();
+
     }
 
     public static String getReadableDistance(String meters){
@@ -182,11 +194,17 @@ public class ChosenDriverService extends IntentService {
 
     private void playSound(){
 
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) maxVolume, 0);
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.newservicevoice2);
+        final MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.newservicevoice2);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.start();
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, (int) actVolume, 0);
+        final float volume = (float) (1 - (Math.log(MAX_VOLUME - 90) / Math.log(MAX_VOLUME)));
+        mediaPlayer.setVolume(volume, volume);
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer arg0) {
+                mediaPlayer.start();
+
+            }
+        });
     }
 
 }

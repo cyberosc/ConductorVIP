@@ -105,4 +105,4 @@
         android:gravity="center_horizontal"
         android:layout_above="@id/content_sensors"/>
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_map_service.xml -->
+</RelativeLayout><!-- From: file:/Users/Acktos/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_map_service.xml -->

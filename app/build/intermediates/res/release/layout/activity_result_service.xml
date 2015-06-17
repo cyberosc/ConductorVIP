@@ -176,4 +176,4 @@
         android:onClick="backToServices"
         android:text="@string/lbl_back_services" />
 
-</RelativeLayout><!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_result_service.xml -->
+</RelativeLayout><!-- From: file:/Users/Acktos/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_result_service.xml -->

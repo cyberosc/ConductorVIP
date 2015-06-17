@@ -29,6 +29,8 @@
     <string name="lbl_pickup_date">FECHA RECOGIDA</string>
     <string name="lbl_pickup_hour">HORA RECOGIDA</string>
     <string name="lbl_back_services">Volver a servicios</string>
+    <string name="connected_state">CONECTADO, deseo desconectarme</string>
+    <string name="disconnected_state">DESCONECTADO, deseo conectarme</string>
     <string name="address_output_string">%1$s %2$s</string>
     <string name="driver_here_progress">Enviando notificacion&#8230;</string>
     <string name="driver_here">Estoy aquí</string>
@@ -36,6 +38,10 @@
     <string name="service">Referencia</string>
     <string name="now">Ahora</string>
     <string name="customer">Cliente</string>
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="reserved">Reservado</string>
+
 
 
     <string-array name="bill_titles">
@@ -93,6 +99,8 @@
     <string name="msg_waiting_for_estable_gps">Esperando señal estable del GPS, procure estar en un espacio abierto.&#8230;</string>
     <string name="msg_service_dialog">¿Deseas llamar a %1$s o notificarle que ya estas aquí? </string>
     <string name="msg_send_bill_dialog">Este servicio NO ha sido enviado a la central de datos, por un problema en la conexión y permanece guardado en tu dispositivo ¿Deseas enviarlo ahora?</string>
+    <string name="msg_failed_disconnect">Hubo un fallo en la red, y no pudimos desconectarte. Intentalo luego.</string>
+    <string name="msg_confirm_disconnect">Debes desconectarte de la aplicación antes de cerrar tu sesión.</string>
 
     <!-- URL´S -->
     <string name="url_add_bill">http://www.rutaplus.co/add_factura/</string>
@@ -103,6 +111,8 @@
     <string name="url_car_login">http://www.rutaplus.co/loginconductor/</string>
     <string name="url_get_my_services">http://www.rutaplus.co/find_conductorserviciovip/</string>
     <string name="url_get_bill_detail">http://www.rutaplus.co/find_factura/</string>
+    <string name="url_send_position">http://www.rutaplus.co/edit_position/</string>
+    <string name="url_disconnect">http://www.rutaplus.co/desconectar/</string>
     <string name="url_set_register_id">http://www.rutaplus.co/edit_mobileid/</string>
 
     <!-- TITULOS -->
@@ -132,5 +142,6 @@
     <string name="title_activity_pending_services">Planilla</string>
     <string name="title_activity_detail_bill">Detalle de facturación</string>
     <string name="title_activity_service_vipconfirm">Confirmar servicio</string>
+    <string name="title_rutaplus">Ruta Plus</string>
 
 </resources>

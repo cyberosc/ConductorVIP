@@ -10,16 +10,22 @@
     android:layout_marginRight="8dp"
     tools:context=".PendingServiceActivity" >
 
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/btn_connect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_primary"
+        android:onClick="changeConnectedState"
+        android:text="Conectado, Quiero desconectarme" />
+
     <ListView
         android:id="@+id/list_pending_services"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:dividerHeight="8dp"
         android:divider="@null"
-
-        >
+        android:layout_below="@+id/btn_connect">
     </ListView>
     
      <TextView 
@@ -34,4 +40,4 @@
         android:visibility="gone"/>
     
 </RelativeLayout>
-<!-- From: file:/D:/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_pending_services.xml -->
+<!-- From: file:/Users/Acktos/AndroidStudioProjects/ConductorVIP/app/src/main/res/layout/activity_pending_services.xml -->

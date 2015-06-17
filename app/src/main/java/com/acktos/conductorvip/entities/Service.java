@@ -26,6 +26,7 @@ public class Service {
 	public static final String KEY_CUSTOMER="cliente";
 	public static final String KEY_DATE="fecha_recogida";
 	public static final String KEY_IMMEDIATE="inmediato";
+	public static final String KEY_RESERVED="Reservado";
 	public static final String KEY_ENCRYPT="encrypt";
 	public static final String KEY_SERVICE="servicio";
 	public static final String KEY_MY_SERVICES="misservicios";

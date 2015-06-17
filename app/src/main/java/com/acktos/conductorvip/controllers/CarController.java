@@ -4,14 +4,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.acktos.conductorvip.LoginActivity;
-import com.acktos.conductorvip.PendingServicesActivity;
 import com.acktos.conductorvip.R;
 import com.acktos.conductorvip.android.Encrypt;
 import com.acktos.conductorvip.android.HttpRequest;
 import com.acktos.conductorvip.android.InternalStorage;
+import com.acktos.conductorvip.android.LocationUtils;
 import com.acktos.conductorvip.entities.Car;
+import com.acktos.conductorvip.util.DateTimeUtils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
@@ -25,9 +27,18 @@ public class CarController {
 	private static final String RESPONSE_TAG="response";
 	private static final String FIELDS_TAG="fields";
 	public static final String KEY_ENCRYPT="encrypt";
+    public static final String SHARED_CONNECETED_STATE="CONNECTED_STATE";
+
+    //shared preferences
+    SharedPreferences mPrefs;
+    SharedPreferences.Editor mEditor;
 
 	public CarController(Context context){
+
 		this.context=context;
+        mPrefs = context.getSharedPreferences(LocationUtils.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+        mEditor = mPrefs.edit();
+
 	}
 
 	public Car carLogin(String email,String pswrd){
@@ -36,7 +47,7 @@ public class CarController {
 
 		Log.i("pswrd:",email);
 		Log.i("pswrd:",pswrd);
-		
+
 		String encrypt=Encrypt.md5(email+pswrd+TOKEN);
 
 		HttpRequest httpRequest=new HttpRequest(context.getString(R.string.url_car_login));
@@ -50,20 +61,20 @@ public class CarController {
 		if(responseData!=null){
 			Log.i("debug login data",responseData);
 			try {
-				
+
 				carResult=new Car();
 				JSONObject jsonObject=new JSONObject(responseData);
 				String responseCode=jsonObject.getString(RESPONSE_TAG);
 				if(responseCode.equals(RESPONSE_SUCCESS_CODE)){
 					Log.i("login result","verdadero");
-					
+
 					JSONObject fieldsObject=jsonObject.getJSONObject(FIELDS_TAG);
 					carResult.id=fieldsObject.getString(Car.KEY_ID);
 					carResult.email=fieldsObject.getString(Car.KEY_EMAIL);
 					carResult.cc=fieldsObject.getString(Car.KEY_CC);
 					carResult.name=fieldsObject.getString(Car.KEY_NAME);
 					carResult.plate=fieldsObject.getString(Car.KEY_PLATE);
-					
+
 				}else{
 					Log.i("login result","falso");
 				}
@@ -72,14 +83,14 @@ public class CarController {
 			}
 		}
 		return carResult;
-	} 
-	
+	}
+
 	public boolean profileExists(){
-		
+
 		boolean exists=false;
 		InternalStorage storage=new InternalStorage(context);
 		if(storage.isFileExists(LoginActivity.FILE_CAR_PROFILE)){
-			
+
 			try {
 				String profileString=storage.readFile(LoginActivity.FILE_CAR_PROFILE);
 				Log.i("debug file profile",profileString);
@@ -96,16 +107,16 @@ public class CarController {
 		}
 		return exists;
 	}
-	
+
 	public String getCarId(){
-		
+
 		String carId="";
 		InternalStorage storage=new InternalStorage(context);
-		
+
 		if(storage.isFileExists(LoginActivity.FILE_CAR_PROFILE)){
-			
+
 			String contentFile=storage.readFile(LoginActivity.FILE_CAR_PROFILE);
-			
+
 			if(!TextUtils.isEmpty(contentFile)){
 				try{
 					JSONObject jsonObject=new JSONObject(contentFile);
@@ -116,10 +127,10 @@ public class CarController {
 					e.printStackTrace();
 					Log.e("getCarId()","error json");
 				}
-				
+
 			}
 		}
-		
+
 		return carId;
 	}
 
@@ -158,5 +169,96 @@ public class CarController {
 			}
 		}
 	}
-	
+
+	public void sendPosition(String coordinates){
+
+        String carId;
+        carId=getCarId();
+
+        String currentDate;
+        currentDate= DateTimeUtils.getCurrentTime();
+
+        String encrypt=Encrypt.md5(carId+coordinates+currentDate+TOKEN);
+
+        Log.i(TAG,carId+" "+coordinates+" "+currentDate+" "+TOKEN);
+
+        HttpRequest httpRequest=new HttpRequest(context.getString(R.string.url_send_position));
+
+        httpRequest.setParam(Car.KEY_ID,carId);
+        httpRequest.setParam(Car.KEY_COORDINATES, coordinates);
+        httpRequest.setParam(Car.KEY_CURRENT_DATE,currentDate);
+        httpRequest.setParam(KEY_ENCRYPT, encrypt);
+
+
+        String responseData=httpRequest.postRequest();
+
+        if(responseData!=null){
+            Log.i(TAG,"response send position:"+responseData);
+            try {
+
+                JSONObject jsonObject=new JSONObject(responseData);
+                String responseCode=jsonObject.getString(RESPONSE_TAG);
+                if(responseCode.equals(RESPONSE_SUCCESS_CODE)){
+                    Log.i(TAG,"send position success");
+
+                }else{
+                    Log.i(TAG,"send position failed");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+
+    public boolean disconnectedFromServer(){
+
+        String carId;
+        carId=getCarId();
+        String encrypt=Encrypt.md5(carId+TOKEN);
+
+
+        HttpRequest httpRequest=new HttpRequest(context.getString(R.string.url_disconnect));
+
+        httpRequest.setParam(Car.KEY_ID,carId);
+        httpRequest.setParam(KEY_ENCRYPT, encrypt);
+
+
+        String responseData=httpRequest.postRequest();
+
+        if(responseData!=null){
+            Log.i(TAG,"response disconnect:"+responseData);
+            try {
+
+                JSONObject jsonObject=new JSONObject(responseData);
+                String responseCode=jsonObject.getString(RESPONSE_TAG);
+                if(responseCode.equals(RESPONSE_SUCCESS_CODE)){
+                    return true;
+
+                }else{
+                    return false;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+	public boolean getConnectedState(){
+
+        Log.i(TAG,"entry to getConnectedState");
+        Log.i(TAG,"state connected:"+ (Boolean.toString(mPrefs.getBoolean(SHARED_CONNECETED_STATE, false))));
+        return  mPrefs.getBoolean(SHARED_CONNECETED_STATE, false);
+    }
+
+    public void setConnectedState(boolean state){
+        mEditor.putBoolean(SHARED_CONNECETED_STATE,state);
+        mEditor.commit();
+    }
+
+
 }
