@@ -5,25 +5,66 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+/**
+ * A simple DAO class for encapsulating an entity  through the REST API.
+ * Representing a bill that is generated when the service has finished.
+ */
+
 public class Bill {
-	
+
+    /**Unique bill ID*/
 	public String id;
+
+    /**Distance covered during operation*/
 	public String distance;
+
+    /**Elapsed time during operation*/
 	public String time;
+
+    /**Coordinates where the operation ends*/
 	public String endLocation;
+
+    /**Address where operation ends*/
 	public String endAddress;
+
+    /**File name that containing all route coordinates*/
 	public String file;
+
+    /**Reference to {@link Service}*/
 	public String serviceId;
+
+    /** String that containing all route coordinates*/
 	public String trackFile;
-	
+
+    /** Computed distance by server*/
 	public String billDistance;
+
+    /** Computed time by server*/
 	public String billTime;
+
+    /** Final of operation*/
 	public String billPrice;
+
+    /**Computed speed by server*/
 	public String billSpeed;
+
+    /**Computed minutes by server*/
 	public String billMinute;
+
+    /**Computed kilometers by server*/
 	public String billKilometer;
+
+    /**Current operation rate*/
 	public String billRate;
+
+    /**Current operation increase*/
 	public String billIncrease;
+
+    /**Payment result attributes*/
+    public String paymentResult;
+
+    /**Payment result message*/
+    public String paymentMessage;
 	
 	
 	public static final String KEY_ID="id";
@@ -35,6 +76,9 @@ public class Bill {
 	public static final String KEY_SERVICE_ID="servicio";
 	public static final String KEY_ENCRYPT="encrypt";
 	public static final String KEY_FILE_TRACK="tracking";
+	public static final String KEY_PAYMENT_RESULT="payment";
+    public static final String KEY_PAYMENT_RESULT_OK="ok";
+	public static final String KEY_PAYMENT_MESSAGE="message_payment";
 	
 	@Override
 	public String toString(){
@@ -58,7 +102,9 @@ public class Bill {
 				"\",\"billKilometer\":\""+billKilometer+
 				"\",\"billRate\":\""+billRate+
 				"\",\"billIncrease\":\""+billIncrease+
-				"\",\"billPrice\":\""+billPrice+"\"}";
+				"\",\"billPrice\":\""+billPrice+
+				"\",\""+KEY_PAYMENT_RESULT+"\":\""+paymentResult+
+				"\",\""+KEY_PAYMENT_MESSAGE+"\":\""+paymentMessage+"\"}";
 	}
 
 	public void ToObject(String jsonString) throws JSONException{
@@ -77,7 +123,6 @@ public class Bill {
 		endAddress=jsonObject.getString("address");
 		file=jsonObject.getString("archivo");
 		serviceId=jsonObject.getString("servicio");
-		
 		billDistance=jsonObject.getString("distancia");
 		billTime=jsonObject.getString("servicio");
 		billPrice=jsonObject.getString("total");
@@ -86,12 +131,15 @@ public class Bill {
 		billKilometer=jsonObject.getString("valor_km");
 		billRate=jsonObject.getString("tarifa");
 		billIncrease=jsonObject.getString("incremento");
+        paymentResult=jsonObject.getString(KEY_PAYMENT_RESULT);
+        paymentMessage=jsonObject.getString(KEY_PAYMENT_MESSAGE);
+
 			
 	}
 	
 	public void jsonToBill(JSONObject jsonObject) throws JSONException{
 		
-		Log.i("jsonToBill()",jsonObject.toString(1));
+		//Log.i("jsonToBill()",jsonObject.toString(1));
 		try{
 			if(!jsonObject.isNull("distancia")) billDistance=jsonObject.getString("distancia");
 			if(!jsonObject.isNull("tiempo")) billTime=jsonObject.getString("tiempo");
@@ -101,12 +149,9 @@ public class Bill {
 			if(!jsonObject.isNull("valor_km")) billKilometer=jsonObject.getString("valor_km");
 			if(!jsonObject.isNull("tarifa")) billRate=jsonObject.getString("tarifa");
 			if(!jsonObject.isNull("incremento")) billIncrease=jsonObject.getString("incremento");
-			
-			
-			Log.i(this.toString()+"jsonToBill()","distancia:"+billDistance+
-					"tiempo:"+billTime+
-					"speed:"+billSpeed+
-					"total:"+billPrice);
+            if(!jsonObject.isNull(KEY_PAYMENT_RESULT)) paymentResult=jsonObject.getString(KEY_PAYMENT_RESULT);
+            if(!jsonObject.isNull(KEY_PAYMENT_MESSAGE)) paymentMessage=jsonObject.getString(KEY_PAYMENT_MESSAGE);
+
 			
 		}catch(Exception e){
 			e.printStackTrace();

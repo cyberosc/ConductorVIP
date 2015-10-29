@@ -5,16 +5,38 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+/**
+ * A simple DAO class for encapsulating an entity  through the REST API.
+ * Representing a customer request service which belongs to a driver.
+ */
+
 public class Service {
-	
+
+    /**Unique service id*/
 	public String id;
+
+    /**Address service request*/
 	public String address;
+
+    /**Vehicle associated to this service*/
 	public String carId;
+
+    /**Driver associated to this service*/
 	public String driver;
+
+    /**Service customer state*/
 	public String state;
+
+    /**Customer name*/
 	public String customer;
+
+    /**Service date*/
 	public String date;
+
+    /**Indicates whether the service is immediate or a specific date*/
 	public String immediate;
+
+    /**Customer number phone*/
 	public String customerPhone;
 	
 	public static final String KEY_ID="id";
@@ -77,8 +99,7 @@ public class Service {
 		date=jsonObject.getString(KEY_DATE);
 		immediate=jsonObject.getString(KEY_IMMEDIATE);
 		customerPhone=jsonObject.getString(KEY_PHONE);
-		
-			
+
 	}
 	
 	

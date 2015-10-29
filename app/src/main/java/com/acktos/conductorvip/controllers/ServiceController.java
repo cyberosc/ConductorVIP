@@ -12,9 +12,13 @@ import android.util.Log;
 import com.acktos.conductorvip.R;
 import com.acktos.conductorvip.android.Encrypt;
 import com.acktos.conductorvip.android.HttpRequest;
+import com.acktos.conductorvip.entities.Car;
 import com.acktos.conductorvip.entities.Service;
 
-
+/**
+ * Class for handle all REST API connections related to the {@link Service} entity
+ * and performing data processing before delivery to presentation.
+ */
 public class ServiceController {
 
 	private Context context;
@@ -28,10 +32,15 @@ public class ServiceController {
 	public static final int PENDING_FOR_BILL=74;
 	public static final int PENDING_FOR_START=75;
 
+	/**
+	 * Public constructor thorough context reference.
+	 * @param context
+	 */
 	public ServiceController(Context context){
 		this.context=context;
 	}
 
+    @Deprecated
 	public ArrayList<Service> getAvailableRequest(){
 
 		ArrayList<Service> services=null;
@@ -62,13 +71,13 @@ public class ServiceController {
 				if(responseCode.equals(RESPONSE_SUCCESS_CODE)){
 					services=new ArrayList<Service>();
 					JSONArray jsonArray=jsonObject.getJSONArray("fields");
-					//Log.i("tamaño jsonArray",jsonArray.length()+"");
+
+
 					for(int i=0;i<jsonArray.length();i++){
 						JSONObject itemObject=jsonArray.getJSONObject(i);
 						services.add(addItemService(itemObject));
-						//Log.i("debug item object",itemObject.toString(1));
 					}
-					//Log.i("debug arrayList",services.toString());
+
 				}
 			} catch (JSONException e) {
 				e.getMessage();
@@ -78,7 +87,10 @@ public class ServiceController {
 		return services;
 	}
 
-	// Get Services for one driver
+    /**
+     * Get services assigned to this driver.
+     * @return {@code ArrayList<Service> services}
+     */
 	public ArrayList<Service> getMyServices(){
 
 		ArrayList<Service> services=null;
@@ -126,7 +138,12 @@ public class ServiceController {
 		return services;
 	}
 
-	//add a service object to ArrayList
+    /**
+     * Add a service object to list
+     * @param jsonObject
+     * @return {@link Service}
+     */
+
 	private Service addItemService(JSONObject jsonObject){
 
 		Service service=new Service();
@@ -138,6 +155,12 @@ public class ServiceController {
 		return service;
 	}
 
+    /**
+     * Updates assign driver field to a request service, through REST API.
+     * @param serviceId
+     * @param state
+     * @return true if process was successfully, otherwise false.
+     */
 	public boolean takeService(String serviceId,String state){
 
 		boolean success=false;

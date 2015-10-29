@@ -149,7 +149,6 @@ public class MapServiceActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_map_service);
 		setProgressBarIndeterminateVisibility(false);
 
-
 		//Initialize UI
 		txtAccuracy=(TextView) findViewById(R.id.txt_accuracy);
 		txtSpeed=(TextView) findViewById(R.id.txt_speed);
@@ -430,6 +429,9 @@ public class MapServiceActivity extends FragmentActivity implements
 		}
 	}
 
+    /**
+     * Updates action button to start or stop tracking.
+     */
 	private void updateBtnTrack(){
 
 		Log.i("updatebtntrack","mupdatesreuest:"+Boolean.toString(locationUpdatesEnabled));
@@ -465,6 +467,9 @@ public class MapServiceActivity extends FragmentActivity implements
 		mMap.setMyLocationEnabled(true);
 	}
 
+    /**
+     * Setup {@code mLocationRequest}
+     */
 	protected void createLocationRequest() {
 
 		mLocationRequest = new LocationRequest();
@@ -475,13 +480,17 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	protected void startLocationUpdates() {
 		LocationServices.FusedLocationApi.requestLocationUpdates(
-				mGoogleApiClient, mLocationRequest, this);
+                mGoogleApiClient, mLocationRequest, this);
 	}
 
 	protected void stopLocationUpdates() {
 		LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
 	}
 
+    /**
+     * Moves map camera map to a specific location.
+     * @param location
+     */
 	private void moveCameraToLocation(Location location){
 
 		float cameraZoom=mMap.getMaxZoomLevel()-2;
@@ -567,6 +576,11 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	}
 
+    /**
+     * checks if the accuracy is good to draw a line.
+     * @param location
+     * @return
+     */
 	private boolean checkSensorForDrawLine(Location location){
 
 		boolean success=false;
@@ -584,7 +598,7 @@ public class MapServiceActivity extends FragmentActivity implements
 
 		return success;
 	}
-	/**update UI with sensor information*/
+	/** update UI with sensor information */
 	private void publishSensors(Location location){
 		
 		float accuracy=location.getAccuracy();
@@ -616,7 +630,12 @@ public class MapServiceActivity extends FragmentActivity implements
 		} 
 		return false;
 	}
-	
+
+    /**
+     * Draws a line to connect two points on the map.
+     * @param pointStart
+     * @param pointEnd
+     */
 	private void drawLine(Location pointStart,Location pointEnd){
 
 		PolylineOptions options=new PolylineOptions();
@@ -626,7 +645,10 @@ public class MapServiceActivity extends FragmentActivity implements
 		mMap.addPolyline(options);
 		//Log.i(DEBUG_TAG,"draw line to:"+pointStart.toString()+" from:"+pointEnd.toString());
 	}
-	
+
+    /**
+     * Gets all save locations to draw complete route.
+     */
 	private void reDrawTrack(){
 
 		String coordinates;
@@ -672,6 +694,11 @@ public class MapServiceActivity extends FragmentActivity implements
 		}
 	}
 
+    /**
+     * Calculates if  a location is within the screen.
+     * @param location
+     * @return
+     */
 	private boolean pointInScreen(Location location){
 
 		boolean inScreen=true;
@@ -702,6 +729,9 @@ public class MapServiceActivity extends FragmentActivity implements
 		return inScreen;
 	}
 
+    /**
+     * Increases the zoom map wheh the route is too long.
+     */
 	private void adjustZoomCamera(){
 
 		mMap.moveCamera(CameraUpdateFactory.zoomOut());
@@ -714,6 +744,10 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	}
 
+    /**
+     * Saves this location into internal storage.
+     * @param location
+     */
 	private void setTrackCoordinate(Location location){
 
 
@@ -731,7 +765,7 @@ public class MapServiceActivity extends FragmentActivity implements
 			if(!TextUtils.isEmpty(oldCoordinates)){
 				oldCoordinates=oldCoordinates+";";
 			}
-			storage.saveFile(LocationClientUtils.FILE_TRACK+"_"+serviceId, oldCoordinates+coordinates);
+            storage.saveFile(LocationClientUtils.FILE_TRACK + "_" + serviceId, oldCoordinates+coordinates);
 
 		}
 	}
@@ -771,6 +805,9 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	}
 
+    /**
+     * Stop periodical updates and gets route information.
+     */
 	private void stopTracking(){
 
 			if(mGoogleApiClient.isConnected()){
@@ -797,7 +834,7 @@ public class MapServiceActivity extends FragmentActivity implements
 
 
 			}else{
-				txtStatus.setText(getString(R.string.status_waiting_connection));
+                txtStatus.setText(getString(R.string.status_waiting_connection));
 			}
 
 
@@ -805,9 +842,11 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	}
 
+
+    /**
+     * Start a periodical updates and setup initial tracking to trace the route.
+     */
 	private void startTracking(){
-
-
 
 		if(mGoogleApiClient.isConnected()){
 
@@ -817,14 +856,14 @@ public class MapServiceActivity extends FragmentActivity implements
 			locationClientUtils.saveStateTracking(LocationClientUtils.STARTED);
 
 			//show progress to expect good gps signal
-			showProgressGPS();
+            showProgressGPS();
 
 			//create coordinate files
-			storage.saveFile(LocationClientUtils.FILE_TRACK + "_" + serviceId, "");
+            storage.saveFile(LocationClientUtils.FILE_TRACK + "_" + serviceId, "");
 			//Log.i("startTrack()","debug file"+storage.readFile(LocationClientUtils.FILE_TRACK+"_"+serviceId));
 
 			// update status tracking process
-			txtStatus.setText(getString(R.string.status_getting_gps_signal));
+            txtStatus.setText(getString(R.string.status_getting_gps_signal));
 
 			//restart values
 			locationUpdatesEnabled = true;
@@ -833,7 +872,7 @@ public class MapServiceActivity extends FragmentActivity implements
 
 
 			//start periodical updates
-			startLocationUpdates();
+            startLocationUpdates();
 
 			// update shared preferences
 			mEditor.putBoolean(LocationUtils.KEY_UPDATES_REQUESTED, locationUpdatesEnabled);
@@ -850,6 +889,10 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	}
 
+
+    /**
+     * Resumes tracking when app back to the background
+     */
 	private void reStartTracking(){
 
 
@@ -862,13 +905,13 @@ public class MapServiceActivity extends FragmentActivity implements
 			locationClientUtils.saveStateTracking(LocationClientUtils.STARTED);
 
 			// update status tracking process
-			txtStatus.setText(getString(R.string.status_getting_gps_signal));
+            txtStatus.setText(getString(R.string.status_getting_gps_signal));
 
 			//restart values
 			locationUpdatesEnabled = true;
 
 			//start periodical updates
-			startLocationUpdates();
+            startLocationUpdates();
 
 			// update shared preferences
 			mEditor.putBoolean(LocationUtils.KEY_UPDATES_REQUESTED, locationUpdatesEnabled);
@@ -882,6 +925,9 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	}
 
+    /**
+     * Send bill attempt.
+     */
 	private void sendBill(){
 
 
@@ -928,6 +974,10 @@ public class MapServiceActivity extends FragmentActivity implements
 		locationClientUtils.saveStateTracking(LocationClientUtils.COMPLETED);
 	}
 
+    /**
+     * Add bill to bill list that could not sent to REST API.
+     * @param bill
+     */
 	private void addFailBill(Bill bill){
 
 		JSONArray jsonArray;
@@ -958,16 +1008,24 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	}
 
+    /**
+     * Add bill to internal storage.
+     * @param bill
+     */
 	private void addFileBill(Bill bill){
 
 		if(bill!=null){
 			String billString=bill.toJson();
-			storage.saveFile(LocationClientUtils.FILE_BILLS+"_"+bill.serviceId, billString);
+            storage.saveFile(LocationClientUtils.FILE_BILLS + "_" + bill.serviceId, billString);
 
 		}
 
 	}
 
+
+	/**
+	 * Async task to send bill to REST API.
+	 */
 	private class BillTrackTask extends AsyncTask <Bill,Void,Bill>{
 
 		//private File trackFile;
@@ -998,8 +1056,14 @@ public class MapServiceActivity extends FragmentActivity implements
 			Intent i=new Intent(MapServiceActivity.this,ResultServiceActivity.class);
 			
 			if(billResponse!=null){
-				resultMessage=getString(R.string.msg_success_result_service);
-				success=true;
+
+				//resultMessage=getString(R.string.msg_success_result_service);
+				resultMessage=billResponse.paymentMessage; //send payment response message to result activity
+
+				if(billResponse.paymentResult.equals(Bill.KEY_PAYMENT_RESULT_OK)){
+					success=true;
+				}
+
 				state=LocationClientUtils.COMPLETED;
 				locationClientUtils.saveStateTracking(LocationClientUtils.COMPLETED);
 
@@ -1051,7 +1115,7 @@ public class MapServiceActivity extends FragmentActivity implements
 
 	}
 	/**
-	 * An AsyncTask that calls getFromLocation() in the background.
+	 * An AsyncTask that get address in the background.
 	 */
 	protected class GetAddressTask extends AsyncTask<Location, Void, String> {
 
@@ -1180,6 +1244,10 @@ public class MapServiceActivity extends FragmentActivity implements
 		}
 	}
 
+
+	/**
+	 * Show a dialog to waiting a gps good signal.
+	 */
 	private void showProgressGPS(){
 		if (progress == null || !progress.isShowing()){
 			progress = new ProgressDialog(this);

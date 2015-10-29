@@ -25,7 +25,7 @@
             android:id="@+id/txt_result_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:paddingLeft="16dp"
             android:text="@string/msg_good_gob"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>

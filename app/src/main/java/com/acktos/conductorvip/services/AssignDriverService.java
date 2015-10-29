@@ -6,7 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-
+/**
+ * An {@link IntentService} subclass for handling asynchronous task requests in
+ * a service on a separate handler thread.
+ * This service sends a message to warn that service assignment was successful or invalid service
+ * to this driver.
+ */
 public class AssignDriverService extends IntentService {
 
     public static final String NOTIFICATION = "com.acktos.gcmclient";

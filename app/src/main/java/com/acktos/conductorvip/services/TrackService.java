@@ -11,6 +11,7 @@ import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import android.app.IntentService;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -22,6 +23,11 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
+
+/**
+ * An {@link Service} subclass for tracking route into a foreground service
+ * when app is sends to background or enter to pause state.
+ */
 
 public class TrackService extends Service implements
 LocationListener,
@@ -71,7 +77,7 @@ GoogleApiClient.OnConnectionFailedListener {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		Log.i(DEBUG_TAG, "entry onCreate");
+		//Log.i(DEBUG_TAG, "entry onCreate");
 		locationClientUtils=new LocationClientUtils(this);
 		storage=new InternalStorage(this);
 		mPrefs = getSharedPreferences(LocationUtils.SHARED_PREFERENCES, Context.MODE_PRIVATE);
@@ -84,7 +90,7 @@ GoogleApiClient.OnConnectionFailedListener {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 
-		Log.i(DEBUG_TAG, "entry onStartCommand");
+		//Log.i(DEBUG_TAG, "entry onStartCommand");
 
 		//set service id
 		serviceId=locationClientUtils.getServiceId();
@@ -131,7 +137,7 @@ GoogleApiClient.OnConnectionFailedListener {
 
 	protected synchronized void buildGoogleApiClient() {
 
-		Log.i(TAG,"Entry to buildGoogleApiClient");
+		//Log.i(TAG,"Entry to buildGoogleApiClient");
 		mGoogleApiClient = new GoogleApiClient.Builder(this)
 				.addConnectionCallbacks(this)
 				.addOnConnectionFailedListener(this)
@@ -159,7 +165,7 @@ GoogleApiClient.OnConnectionFailedListener {
 	@Override
 	public void onLocationChanged(Location location) {
 
-		Log.i(DEBUG_TAG, "location:" + location.toString());
+		//Log.i(DEBUG_TAG, "location:" + location.toString());
 		if(locationClientUtils.checkSensors(location)){
 
 			if(currentLocation==null){
@@ -189,6 +195,11 @@ GoogleApiClient.OnConnectionFailedListener {
 		}
 	}
 
+    /**
+     * Save new location into local storage.
+     * @param location
+     * @return true if this process was successfully
+     */
 	private boolean saveLocation(Location location){
 
 		String oldCoordinates="";
@@ -204,7 +215,7 @@ GoogleApiClient.OnConnectionFailedListener {
 
 		if(storage.saveFile(LocationClientUtils.FILE_TRACK + "_" + serviceId, oldCoordinates + coordinates)){
 
-			Log.i(TAG,"Save location in background");
+			//Log.i(TAG,"Save location in background");
 			locationClientUtils.saveEndLocation(location);
 			return true;
 		}else{

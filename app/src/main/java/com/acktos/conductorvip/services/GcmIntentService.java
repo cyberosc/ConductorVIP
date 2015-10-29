@@ -15,6 +15,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.acktos.conductorvip.PendingServicesActivity;
+import com.acktos.conductorvip.ServiceDetailActivity;
 import com.acktos.conductorvip.broadcast.GcmBroadcastReceiver;
 import com.acktos.conductorvip.controllers.CarController;
 import com.google.android.gms.common.ConnectionResult;
@@ -26,6 +27,13 @@ import com.google.android.gms.location.LocationServices;
 import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * An {@link IntentService} subclass for handling asynchronous task requests in
+ * a service on a separate handler thread.
+ * This service is launched when the driver receives a request to send its distance from a service
+ * through upstream message.
+ */
 
 public class GcmIntentService extends IntentService implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -86,7 +94,7 @@ public class GcmIntentService extends IntentService implements GoogleApiClient.C
     public void onCreate() {
         super.onCreate();
 
-        Log.i(TAG, "Entry to onCreate");
+        //Log.i(TAG, "Entry to onCreate");
 
         gcm = GoogleCloudMessaging.getInstance(this);
         //initialize last location
@@ -99,23 +107,18 @@ public class GcmIntentService extends IntentService implements GoogleApiClient.C
     @Override
     public void onHandleIntent(Intent intent) {
 
-        Log.i(TAG, "Entry to onHandleIntent");
+        //Log.i(TAG, "Entry to onHandleIntent");
         this.intent=intent;
         Bundle extras = intent.getExtras();
         // The getMessageType() intent parameter must be the intent you received
         // in your BroadcastReceiver.
-        Log.i("extras", extras.toString());
+        //Log.i("extras", extras.toString());
         String messageType = gcm.getMessageType(intent);
 
-        Log.i(TAG, "message type:" + messageType);
+        //Log.i(TAG, "message type:" + messageType);
 
         if (!extras.isEmpty()) {  // has effect of unparcelling Bundle
-            /*
-            * Filter messages based on message type. Since it is likely that GCM
-            * will be extended in the future with new message types, just ignore
-            * any message types you're not interested in, or that you don't
-            * recognize.
-            */
+
             if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
                 message="Message type send error: " + extras.toString();
                 truncateMessage=true;
@@ -133,7 +136,7 @@ public class GcmIntentService extends IntentService implements GoogleApiClient.C
                     if (mGoogleApiClient != null) {
                         // Post notification of received message.
                         //sendNotification("Received: " + extras.toString());
-                        Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
+                        //Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
 
                         this.serviceCoordinates =extras.getString(KEY_COORDINATES);
                         this.serviceId=extras.getString(KEY_SERVICE_ID);
@@ -154,7 +157,7 @@ public class GcmIntentService extends IntentService implements GoogleApiClient.C
             message="Extras information not found";
         }
 
-        Log.i(TAG, "message:" + message);
+        //Log.i(TAG, "message:" + message);
         GcmBroadcastReceiver.completeWakefulIntent(intent);
 
     }
@@ -162,7 +165,7 @@ public class GcmIntentService extends IntentService implements GoogleApiClient.C
     //send message to CSS server
     private void sendMessage(){
 
-        Log.i(TAG, "Entry to sendMessage");
+        //Log.i(TAG, "Entry to sendMessage");
 
         String coordinates="";
         String accuracy="";
@@ -343,8 +346,8 @@ public class GcmIntentService extends IntentService implements GoogleApiClient.C
             String id = TYPE_DISTANCE_TO_SERVICE+"-"+Build.ID+"-"+rand;
 
             try {
-                gcm.send(PendingServicesActivity.SENDER_ID + "@gcm.googleapis.com", id,timeToLive,params[0]);
-                Log.i(TAG, "Message sent");
+                gcm.send(PendingServicesActivity.SENDER_ID + "@gcm.googleapis.com", id, timeToLive, params[0]);
+                //Log.i(TAG, "Message sent");
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();

@@ -1,18 +1,32 @@
 package com.acktos.conductorvip.entities;
 
-import java.io.File;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
+
+/**
+ * A simple DAO class for encapsulating an entity  through the REST API.
+ * It represents a driver who performs a service.
+ */
 
 public class Car {
-	
+
+
+    /**Unique car id*/
 	public String id;
+
+    /**Driver email*/
 	public String email;
+
+    /**Driver identification*/
 	public String cc;
+
+    /**Driver name*/
 	public String name;
+
+    /**Vehicle plate*/
 	public String plate;
 	
 	

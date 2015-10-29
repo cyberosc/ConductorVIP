@@ -14,6 +14,11 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * An {@link IntentService} subclass for handling asynchronous task requests in
+ * a service on a separate handler thread.
+ * This service is launched when the driver accepts the request for a service through upstream message.
+ */
 
 public class AcceptIntentService extends IntentService {
 
@@ -34,7 +39,7 @@ public class AcceptIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        Log.i(TAG, "entry onHandleIntent ChosenDriver");
+        //Log.i(TAG, "entry onHandleIntent ChosenDriver");
 
         Bundle extras = intent.getExtras();
 
@@ -44,8 +49,8 @@ public class AcceptIntentService extends IntentService {
             serviceId = extras.getString(GcmIntentService.KEY_SERVICE_ID);
             actionAssign = extras.getInt(GcmIntentService.KEY_ACTION_ASSIGN);
 
-            Log.i(TAG, "serviceId:" + serviceId);
-            Log.i(TAG, "driverId:" + driverId);
+            //Log.i(TAG, "serviceId:" + serviceId);
+            //Log.i(TAG, "driverId:" + driverId);
 
             Bundle data = new Bundle();
 

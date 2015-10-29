@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.acktos.conductorvip"
-    android:versionCode="20"
-    android:versionName="3.0.2" >
+    android:versionCode="22"
+    android:versionName="3.0.4" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -41,7 +41,7 @@
         <!--
                 <meta-data
                     android:name="com.google.android.maps.v2.API_KEY"
-                    android:value="AIzaSyAZfHdKhmvQi5s2yPST2WPXndpbUZuZ92k" />
+                    android:value="AIzaSyC-WgGf4iAxrQjPmYjCO67SwUeFrvXc1Vg" />
         -->
 
 

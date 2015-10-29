@@ -18,6 +18,10 @@ import com.acktos.conductorvip.android.InternalStorage;
 import com.acktos.conductorvip.entities.Bill;
 import com.acktos.conductorvip.entities.Service;
 
+/**
+ * Class for handle all REST API connections related to the {@link Bill} entity
+ * and performing data processing before delivery to presentation.
+ */
 public class BillController {
 
 	private Context context;
@@ -26,10 +30,20 @@ public class BillController {
 	private static final String RESPONSE_TAG="response";
 	private static final String FIELDS_TAG="fields";
 
+    /**
+     * Public constructor through context reference.
+     * @param context
+     */
 	public BillController(Context context){
 		this.context=context;
 	}
 
+
+    /**
+     * Send bill information to REST API.
+     * @param bill
+     * @return {@link Bill} object.
+     */
 	public Bill addBill(Bill bill){
 
 		HttpRequest httpPost=new HttpRequest(context.getString(R.string.url_add_bill));
@@ -45,7 +59,7 @@ public class BillController {
 		httpPost.setParam(Bill.KEY_FILE_TRACK, bill.trackFile);
 
 		String encrypt=Encrypt.md5(bill.id+bill.distance+bill.time+bill.endLocation+bill.endAddress+bill.file+bill.serviceId+TOKEN);
-		Log.i("debug encrypt service",
+		/*Log.i("debug encrypt service",
 				bill.id+"*"+
 						bill.distance+"*"+
 						bill.time+"*"+
@@ -54,13 +68,13 @@ public class BillController {
 						bill.file+"*"+
 						bill.serviceId+"*"+
 						"set coordenadas:"+bill.trackFile+"*"+
-						TOKEN);
+						TOKEN);*/
 		httpPost.setParam(Bill.KEY_ENCRYPT, encrypt);
 
 		Bill billResponse=null;
 		
 		String responseData=httpPost.postRequest();
-		Log.i("response add bill","response add bill"+responseData);
+		//Log.i("response add bill","response add bill"+responseData);
 		if(responseData!=null){
 			
 			try {
@@ -71,7 +85,7 @@ public class BillController {
 					
 					billResponse=new Bill();
 					JSONObject jsonObjectBill=jsonObject.getJSONObject(FIELDS_TAG);
-					Log.i(this.toString()+"addBill()",jsonObjectBill.toString(1));
+					//Log.i(this.toString()+"addBill()",jsonObjectBill.toString(1));
 					billResponse.jsonToBill(jsonObjectBill);
 					
 				}
@@ -82,7 +96,13 @@ public class BillController {
 		
 		return billResponse;
 	}
-	
+
+
+    /**
+     * Get bill information of service through REST API.
+     * @param serviceId
+     * @return
+     */
 	public Bill getBillDetail(String serviceId){
 		
 		Bill bill=null;
@@ -106,9 +126,9 @@ public class BillController {
 				if(responseCode.equals(RESPONSE_SUCCESS_CODE)){
 					bill=new Bill();
 					JSONObject jsonObjectBill=jsonObject.getJSONObject("fields");
-					Log.i("getBillDetail 2",jsonObjectBill.toString(1));
+					//Log.i("getBillDetail 2",jsonObjectBill.toString(1));
 					bill.jsonToBill(jsonObjectBill);
-					Log.i("getBillDetail 1","bill:");
+					//Log.i("getBillDetail 1","bill:");
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -118,6 +138,12 @@ public class BillController {
 		return bill;
 	}
 
+
+    /**
+     * Get bill list that could not be sent to REST API from local storage.
+     * @param context
+     * @return {@code ArrayList<String>} failedList.
+     */
 	public static ArrayList<String> getFailedList(Context context){
 
 		ArrayList<String> failedBills=new ArrayList<String>();
@@ -138,16 +164,21 @@ public class BillController {
 
 				//Log.i("debug list","bill list:"+failedBills.toString());
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else{
-			Log.e("getFailedList","El archivo no existe");
+			Log.e("getFailedList","file not found");
 		}
 
 		return failedBills;
 	}
 
+    /**
+     * Search service Id into a list of service Ids.
+     * @param billFailed
+     * @param serviceId
+     * @return true if it was found, otherwise false.
+     */
 	public static boolean isFailedBill(ArrayList<String> billFailed,String serviceId){
 
 		boolean isFailed=false;

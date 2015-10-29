@@ -28,10 +28,10 @@ public class InternalStorage {
 			return true;
 		} catch (FileNotFoundException e) {
 			//e.printStackTrace();
-			Log.e("Error","File not found exception");
+			Log.e("Error", "File not found exception");
 		} catch (IOException e) {
 			//e.printStackTrace();
-			Log.e("Error","IOException");
+			Log.e("Error", "IOException");
 		}
 		return false;
 	}
@@ -43,7 +43,7 @@ public class InternalStorage {
 			BufferedReader inputReader=new BufferedReader(new InputStreamReader(context.openFileInput(filename)));
 			String inputString;
 			StringBuffer stringBuffer=new StringBuffer();
-			
+
 			while((inputString=inputReader.readLine())!=null){
 				stringBuffer.append(inputString);
 			}
@@ -55,6 +55,9 @@ public class InternalStorage {
 		} catch (IOException e) {
 			Log.e("Error IO exception","IO exception try load"+filename);
 			e.printStackTrace();
+		}
+		finally {
+
 		}
 		return data;
 	}

@@ -18,6 +18,11 @@ import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
+
+/**
+ * Class for handle all REST API connections related to the {@link Car} entity
+ * and performing data processing before delivery to presentation.
+ */
 public class CarController {
 
 	public final static String TAG="conductorvip_debug";
@@ -33,6 +38,10 @@ public class CarController {
     SharedPreferences mPrefs;
     SharedPreferences.Editor mEditor;
 
+    /**
+     * Public constructor through context reference.
+     * @param context
+     */
 	public CarController(Context context){
 
 		this.context=context;
@@ -41,6 +50,12 @@ public class CarController {
 
 	}
 
+    /**
+     * Makes car login request to REST API with email and password credentials.
+     * @param email
+     * @param pswrd
+     * @return {@link Car} object if login was successfully otherwise null.
+     */
 	public Car carLogin(String email,String pswrd){
 
 		Car carResult=null;
@@ -59,14 +74,14 @@ public class CarController {
 		String responseData=httpRequest.postRequest();
 
 		if(responseData!=null){
-			Log.i("debug login data",responseData);
+			//Log.i("debug login data",responseData);
 			try {
 
 				carResult=new Car();
 				JSONObject jsonObject=new JSONObject(responseData);
 				String responseCode=jsonObject.getString(RESPONSE_TAG);
 				if(responseCode.equals(RESPONSE_SUCCESS_CODE)){
-					Log.i("login result","verdadero");
+					//Log.i("login result","verdadero");
 
 					JSONObject fieldsObject=jsonObject.getJSONObject(FIELDS_TAG);
 					carResult.id=fieldsObject.getString(Car.KEY_ID);
@@ -76,7 +91,7 @@ public class CarController {
 					carResult.plate=fieldsObject.getString(Car.KEY_PLATE);
 
 				}else{
-					Log.i("login result","falso");
+					Log.i("login result","false");
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -85,6 +100,11 @@ public class CarController {
 		return carResult;
 	}
 
+
+    /**
+     * Check whether the driver already logged, verifying the profile file.
+     * @return true if file exists, otherwise false.
+     */
 	public boolean profileExists(){
 
 		boolean exists=false;
@@ -108,6 +128,10 @@ public class CarController {
 		return exists;
 	}
 
+    /**
+     * Retrieves car id from local storage.
+     * @return carId
+     */
 	public String getCarId(){
 
 		String carId="";
@@ -134,6 +158,10 @@ public class CarController {
 		return carId;
 	}
 
+    /**
+     * Saves google register id into REST API.
+     * @param registerId
+     */
 	public void saveRegistrationId(String registerId){
 
 		String carId;
@@ -170,6 +198,10 @@ public class CarController {
 		}
 	}
 
+    /**
+     * Send a position to REST API.
+     * @param coordinates
+     */
 	public void sendPosition(String coordinates){
 
         String carId;
@@ -212,6 +244,10 @@ public class CarController {
     }
 
 
+    /**
+     * Changes driver state into REST API. (active or in-active)
+     * @return true if process was successfully otherwise false.
+     */
     public boolean disconnectedFromServer(){
 
         String carId;
@@ -248,13 +284,21 @@ public class CarController {
         return false;
     }
 
+    /**
+     * Get driver state from local storage.
+     * @return true if the driver is connected, otherwise false.
+     */
 	public boolean getConnectedState(){
 
-        Log.i(TAG,"entry to getConnectedState");
+        //Log.i(TAG,"entry to getConnectedState");
         Log.i(TAG,"state connected:"+ (Boolean.toString(mPrefs.getBoolean(SHARED_CONNECETED_STATE, false))));
         return  mPrefs.getBoolean(SHARED_CONNECETED_STATE, false);
     }
 
+    /**
+     * Set driver state into local storage.
+     * @param state
+     */
     public void setConnectedState(boolean state){
         mEditor.putBoolean(SHARED_CONNECETED_STATE,state);
         mEditor.commit();

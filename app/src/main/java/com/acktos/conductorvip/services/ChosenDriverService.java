@@ -24,6 +24,8 @@ import java.math.RoundingMode;
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
+ *This service is launched when this driver is chosen as the best option to provide the service
+ * and launches {@link ServiceDetailActivity}, so that the driver can accept it.
  */
 public class ChosenDriverService extends IntentService {
 
@@ -32,7 +34,6 @@ public class ChosenDriverService extends IntentService {
     private NotificationManager mNotificationManager;
 
     //Attributes
-
     private String serviceId;
     private String address;
     private String distance;
@@ -82,7 +83,7 @@ public class ChosenDriverService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        Log.i(TAG, "entry onHandleIntent ChosenDriver");
+        //Log.i(TAG, "entry onHandleIntent ChosenDriver");
         //this.intent=intent;
         Bundle extras = intent.getExtras();
         // The getMessageType() intent parameter must be the intent you received
@@ -93,7 +94,7 @@ public class ChosenDriverService extends IntentService {
 
         if (!extras.isEmpty()) {  // has effect of unparcelling Bundle
 
-            Log.i(TAG, "extras not empty");
+            //Log.i(TAG, "extras not empty");
 
             if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR.equals(messageType)) {
                 Log.i(TAG, "Message type send error: " + extras.toString());
@@ -110,7 +111,7 @@ public class ChosenDriverService extends IntentService {
                 this.distance=extras.getString(GcmIntentService.KEY_DISTANCE);
 
 
-                Log.i(TAG, "send Notification");
+                //Log.i(TAG, "send Notification");
 
                 //sendNotification(serviceId, distance, address);
 
@@ -139,13 +140,13 @@ public class ChosenDriverService extends IntentService {
         mNotificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
         Intent serviceDetail=new Intent(this,ServiceDetailActivity.class);
-        serviceDetail.putExtra(GcmIntentService.KEY_ADDRESS,address);
+        serviceDetail.putExtra(GcmIntentService.KEY_ADDRESS, address);
         serviceDetail.putExtra(GcmIntentService.KEY_DISTANCE,distance);
         serviceDetail.putExtra(GcmIntentService.KEY_SERVICE_ID,serviceId);
 
-        Log.i(TAG, "serviceId en sendNotification:" + serviceId);
-        Log.i(TAG, "distance en sendNotification:" + distance);
-        Log.i(TAG, "address en sendNotification:" + address);
+        //Log.i(TAG, "serviceId en sendNotification:" + serviceId);
+        //Log.i(TAG, "distance en sendNotification:" + distance);
+        //Log.i(TAG, "address en sendNotification:" + address);
 
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, serviceDetail, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -165,6 +166,11 @@ public class ChosenDriverService extends IntentService {
 
     }
 
+    /**
+     * This method Converts meters to kilometers
+     * @param meters
+     * @return kilometers string
+     */
     public static String getReadableDistance(String meters){
 
         if(meters!=null){
